@@ -7,6 +7,9 @@ import base64
 import io
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.utils import timezone
+
+
 
 
 
@@ -145,7 +148,7 @@ class Factura(models.Model):
     destinatario = models.ForeignKey(Usuario, on_delete = models.SET_NULL, related_name = '+', null = True)
     direccion = models.ForeignKey(Direccion, on_delete = models.CASCADE, null = True)
     numero = models.BigIntegerField("Número")
-    fecha = models.DateTimeField(default= datetime.now())
+    fecha = models.DateTimeField(default= timezone.now())
     mensajeria = models.FloatField("Costo por mensajeria")
     total = models.FloatField("Total a pagar")
     aprobada = models.BooleanField("Se aprobo", default = False)
